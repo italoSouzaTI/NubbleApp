@@ -1,6 +1,6 @@
-import {zodResolver} from '@hookform/resolvers/zod';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useForm} from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { AuthScreenProps } from 'src/routes/navigationType';
 
 import {
   Button,
@@ -9,15 +9,13 @@ import {
   FormTextInput,
   FormPasswordnput,
 } from '@components';
-import {useResetNavigationSucess} from '@hooks';
-import {RootStackParamList} from '@routes';
+import { useResetNavigationSucess } from '@hooks';
 
-import {signUpSchema, SignUpSchema} from './signUpSchema';
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
+import { signUpSchema, SignUpSchema } from './signUpSchema';
 
-export function SignUpScreen({navigation}: ScreenProps) {
-  const {reset} = useResetNavigationSucess();
-  const {control, formState, handleSubmit} = useForm<SignUpSchema>({
+export function SignUpScreen ({ navigation }: AuthScreenProps<'SignUpScreen'>) {
+  const { reset } = useResetNavigationSucess();
+  const { control, formState, handleSubmit } = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       username: '',
@@ -28,7 +26,7 @@ export function SignUpScreen({navigation}: ScreenProps) {
     mode: 'onChange',
   });
 
-  function submitForm(formValues: SignUpSchema) {
+  function submitForm (formValues: SignUpSchema) {
     console.log(formValues);
     reset({
       title: 'Sua conta foi criada com sucesso!',
@@ -49,21 +47,21 @@ export function SignUpScreen({navigation}: ScreenProps) {
         name="username"
         label="Seu username"
         placeholder="@"
-        BoxProps={{mb: 's20'}}
+        BoxProps={{ mb: 's20' }}
       />
       <FormTextInput
         control={control}
         name="fullname"
         label="Nome completo"
         placeholder="Digite seu nome completo"
-        BoxProps={{mb: 's20'}}
+        BoxProps={{ mb: 's20' }}
       />
       <FormTextInput
         control={control}
         name="email"
         label="E-mail"
         placeholder="Digite seu e-mail"
-        BoxProps={{mb: 's20'}}
+        BoxProps={{ mb: 's20' }}
       />
 
       <FormPasswordnput
@@ -71,7 +69,7 @@ export function SignUpScreen({navigation}: ScreenProps) {
         name="password"
         label="Senha"
         placeholder="Digite sua senha"
-        BoxProps={{mb: 's48'}}
+        BoxProps={{ mb: 's48' }}
       />
 
       <Button

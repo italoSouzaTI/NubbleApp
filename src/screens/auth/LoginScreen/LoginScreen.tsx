@@ -1,8 +1,8 @@
-import {Alert, View} from 'react-native';
+import { Alert, View } from 'react-native';
 
-import {zodResolver} from '@hookform/resolvers/zod';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useForm} from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { AuthScreenProps } from 'src/routes/navigationType';
 
 import {
   Text,
@@ -11,14 +11,12 @@ import {
   FormTextInput,
   FormPasswordnput,
 } from '@components';
-import {RootStackParamList} from '@routes';
 
-import {LoginSchema, loginSchema} from './LoginSchema';
+import { LoginSchema, loginSchema } from './LoginSchema';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
-
-export function LoginScreen({navigation}: ScreenProps) {
-  const {control, formState, handleSubmit} = useForm<LoginSchema>({
+// eslint-disable-next-line prettier/prettier
+export function LoginScreen ({ navigation }: AuthScreenProps<'LoginScreen'>) {
+  const { control, formState, handleSubmit } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
@@ -26,15 +24,15 @@ export function LoginScreen({navigation}: ScreenProps) {
     },
     mode: 'onChange',
   });
-  function submitForm(formValues: LoginSchema) {
+  function submitForm (formValues: LoginSchema) {
     Alert.alert(
       `Email: ${formValues.email} ${'\n'} Senha: ${formValues.password}`,
     );
   }
-  function handleToSignUpScreen() {
+  function handleToSignUpScreen () {
     navigation.navigate('SignUpScreen');
   }
-  function navigateToForgotPasswordScreen() {
+  function navigateToForgotPasswordScreen () {
     navigation.navigate('ForgotPasswordScreen');
   }
   return (
@@ -54,7 +52,7 @@ export function LoginScreen({navigation}: ScreenProps) {
           name="email"
           label="E-mail"
           placeholder="Digite seu e-mail"
-          BoxProps={{mb: 's20'}}
+          BoxProps={{ mb: 's20' }}
         />
         <FormPasswordnput
           control={control}
