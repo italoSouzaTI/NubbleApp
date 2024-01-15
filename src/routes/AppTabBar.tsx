@@ -2,7 +2,7 @@ import React from 'react';
 
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
-import {Box, BoxProps, Icon, Text, TextProps, TouchableOpacityBox, TouchableOpacityBoxProps} from '@components';
+import {Box, BoxProps, Icon, TTouchableOpacityBoxProps, Text, TextProps, TouchableOpacityBox} from '@components';
 import {useAppSafeArea} from '@hooks';
 import {AppTabBottomTabParamList} from '@routes';
 import {$shadowProps} from '@theme';
@@ -74,7 +74,7 @@ const $label: TextProps = {
   preset: 'paragraphCaption',
 };
 
-const $itemWrapper: TouchableOpacityBoxProps = {
+const $itemWrapper: TTouchableOpacityBoxProps = {
   activeOpacity: 1,
   alignItems: 'center',
   accessibilityRole: 'button',
