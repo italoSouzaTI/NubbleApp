@@ -1,26 +1,12 @@
-import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
 
-import { IconProps } from '../components/Icon/Icon';
+import {NavigationContainer} from '@react-navigation/native';
 
-import { AppStack } from './AppStack';
-import { AuthStack } from './AuthStack';
+import {AppStack} from './AppStack';
+import {AuthStack} from './AuthStack';
 
-export type RootStackParamList = {
-  LoginScreen: undefined;
-  SignUpScreen: undefined;
-  SuccessScreen: {
-    title: string;
-    description: string;
-    icon: Pick<IconProps, 'name' | 'color'>;
-  };
-  ForgotPasswordScreen: undefined;
-};
-
-export function Router () {
+export function Router() {
   const authenticated = true;
-  return (
-    <NavigationContainer>
-      {authenticated ? <AppStack /> : <AuthStack />}
-    </NavigationContainer>
-  );
+
+  return <NavigationContainer>{authenticated ? <AppStack /> : <AuthStack />}</NavigationContainer>;
 }
