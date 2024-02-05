@@ -10,7 +10,8 @@
       "@screens": ["./src/screens"],
       "@brand": ["./src/brand"],
       "@theme": ["./src/theme"],
-      "@domain": ["./src/domain"]
+      "@domain": ["./src/domain"],
+      "@api": ["./src/api"]
     }
   }
 }
