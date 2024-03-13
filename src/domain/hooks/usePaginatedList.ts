@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {Page} from '@types';
 
 export function usePaginatedList<Data>(getList: (page: number) => Promise<Page<Data>>) {
-  const [postList, setPostList] = useState<Data[]>([]);
+  const [list, setList] = useState<Data[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<boolean | null>(null);
   const [page, setPage] = useState<number>(1);
@@ -14,7 +14,7 @@ export function usePaginatedList<Data>(getList: (page: number) => Promise<Page<D
       setError(null);
       setLoading(true);
       const {data, meta} = await getList(1);
-      setPostList(data);
+      setList(data);
       if (meta.hasNextPage) {
         setPage(2);
         setHasNextPage(true);
@@ -34,7 +34,7 @@ export function usePaginatedList<Data>(getList: (page: number) => Promise<Page<D
     try {
       setLoading(true);
       const {data, meta} = await getList(page);
-      setPostList(prev => [...prev, ...data]);
+      setList(prev => [...prev, ...data]);
       if (meta.hasNextPage) {
         setPage(prev => prev + 1);
         setHasNextPage(true);
@@ -55,7 +55,7 @@ export function usePaginatedList<Data>(getList: (page: number) => Promise<Page<D
   return {
     loading,
     error,
-    postList,
+    list,
     refresh: fetchInitialData,
     fetchNextPage,
   };
